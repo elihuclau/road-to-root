@@ -1,24 +1,24 @@
-# Bandit Level 10 → Level 11
+# Bandit Level 11 → Level 12
 
 ## Goal
 Tujuan challenge: 
-Mencari password yang di encode pada file data.txt
+Mencari password yang teks nya telah di ubah menggunkan cipher type ROT13
 
 ## Problem
 Deskripsi singkat challenge / masalah yang harus diselesaikan.
-Pada file data.txt terdapat text acak yang terdapat karakter "=" di akhir kalimat nya, lalu kita harus mengdecode nya ke password asli nya 
+Pada file data.txt terdapat password yang teks ya diacak menggunakan subtitution cipher
 
 ## Approach
 Cara berpikir untuk menyelesaikan challenge.
-Dikarenakan password nya ter encode menjadi:
-VGhlIHBhc3N3b3JkIGlzIGR0UjE3M2ZaS2IwUlJzREZTR3NnMlJXbnBOVmozcVJyCg==
-kita akan mengdecode ya menggunakan command dari linux yaitu "base64"
+Dengan menggunakan command tr untuk memecahkan cipher dengan jenis ROT13
+dengan analogi :
+diapply 1x menjadi terenkripsi
+diapply lagi balik ke normal
 
 ## Commands
 ssh bandit10@bandit.labs.overthewire.org -p 2220
 ls
-cat data.txt | base64 -d
-
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 
 ## Solution Steps
 
@@ -34,16 +34,16 @@ ssh bandit10@bandit.labs.overthewire.org -p 2220
 ls
 ```
 
-3. Decode file tersebut
+3. Balikan enkripsi nya ke normal
 
 ```bash
-cat data.txt | base64 -d
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 ```
 
 Output menunjukkan hasil decode dari file yang terencode:
 
 ```
-The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 ```
 
 
@@ -51,15 +51,15 @@ The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 ```
 password-next-level
 ```
-dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 
 
 ## Key Takeaway
 Hal penting yang dipelajari dari level ini:
 
-- penggunaan base64 untuk encode maupun decode
+- Menggunakan tr untuk menyelesaikan masalah ROT13
 
 ## New Commands Learned
 Command baru yang dipelajari:
 
--base64 (untuk mengdecode/encode file)
+-tr (untuk translate teks yang diubah)
